@@ -73,7 +73,6 @@ const Tech: NextPage = () => {
     }, [active]);
     return (
         <div className={styles.mainContainerWrap} style={{ backgroundImage: `url(${bg})` }}>
-            <Controller />
             <div className={styles.mainContainer}>
                 <div className={styles.warningMessage}>
                 <p>
@@ -106,6 +105,7 @@ const Tech: NextPage = () => {
                 >
                 {sections.map((sec) => (
                     <div
+                    key={`game_`+sec.id}
                     className={`${styles.sect} ${
                         active === sec.id ? styles.activeSect : ""
                     }`}
@@ -116,6 +116,7 @@ const Tech: NextPage = () => {
                 ))}
                 </div>
                 <GameList icon={curSec} />
+                <Controller />
             </div>
         </div>
     )
