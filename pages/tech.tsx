@@ -3,6 +3,7 @@ import type { NextPage } from 'next'
 import styles from "/styles/Tech.module.css";
 import GameList from './components/GameList'
 import Controller from './components/controller'
+import Clock from './components/Clock'
 
 const sections = [
     {
@@ -74,29 +75,19 @@ const Tech: NextPage = () => {
     return (
         <div className={styles.mainContainerWrap} style={{ backgroundImage: `url(${bg})` }}>
             <div className={styles.mainContainer}>
-                <div className={styles.warningMessage}>
-                <p>
-                    You do know you have to play PlayStation 5 on a bigger screen right..
-                    ?
-                </p>
-                <p>
-                    For a proper experience please visit this website on a larger size
-                    screen.
-                </p>
-                </div>
                 <div className={styles.mainHeader}>
                 <div className={styles.gamesMedia}>
-                    <b>Games</b>
-                    <p>Media</p>
+                    <b>Backend</b>
+                    <p>Sever</p>
+                    <p>DataBase</p>
+                    <p>Frontend</p>
                 </div>
                 <div className={styles.iconsContainer}>
                     <div className={styles.profileIcon}>
                     <img src={"/profile.jpg"} />
                     <div className={styles.onlineSymbol}></div>
                     </div>
-                    <p>
-                    {new Date().getHours()}:{new Date().getMinutes()}
-                    </p>
+                    <Clock />
                 </div>
                 </div>
                 <div

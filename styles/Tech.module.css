@@ -44,8 +44,8 @@
   .iconsContainer {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    width: 200px;
+    justify-content: flex-end;
+    width: 50%;
     padding: 10px;
     opacity: 0;
     animation-fill-mode: forwards;
@@ -55,7 +55,7 @@
     font-weight: bold;
   }
   
-  .iconsContainer p {
+  .iconsContainer div {
     font-size: 45px;
     font-weight: lighter;
     margin: 0px 0px 0px 40px;
@@ -73,7 +73,7 @@
   .gamesMedia {
     display: flex;
     justify-content: space-around;
-    width: 225px;
+    width: 50%;
     font-size: 24px;
     opacity: 0;
     animation-fill-mode: forwards;
