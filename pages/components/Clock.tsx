@@ -3,15 +3,15 @@ import type { NextPage } from 'next'
 
 const Clock: NextPage = () => {
     const date = new Date();
-    let hour = date.getHours()
-    let minute = date.getMinutes()
+    let hour = leadingZeros(date.getHours())
+    let minute = leadingZeros(date.getMinutes())
     let times = leadingZeros(date.getSeconds())
     let filterTime = hour+":"+minute+":"+times
     const [time, setTime] = useState(filterTime);
     const getTime = () => {
         const date = new Date();
-        let hour = date.getHours()
-        let minute = date.getMinutes()
+        let hour = leadingZeros(date.getHours())
+        let minute = leadingZeros(date.getMinutes())
         let times = leadingZeros(date.getSeconds())
         let filterTime = hour+":"+minute+":"+times
       setTime(filterTime)
