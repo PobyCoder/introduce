@@ -8,7 +8,6 @@
     animation-name: descriptEnter;
     animation-delay: 0.2s;
     animation-duration: 1.2s;
-    height: 300px;
     position: absolute;
     left: 125px;
     bottom: 100px;
@@ -16,6 +15,11 @@
   
   .descriptContainer p {
     font-size: 25px;
+    margin: 0px;
+  }
+
+  .descriptContainer img {
+    max-width: 380px;
   }
   
   .buttonContainer {

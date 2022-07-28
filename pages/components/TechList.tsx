@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import type { NextPage } from 'next'
 import styles from "/styles/Tech.module.css";
-import TechTitle from './components/TechTitle'
-import TechList from './components/TechList'
-import Controller from './components/Controller'
-import Clock from './components/Clock'
-import { useRouter } from 'next/router'
 
+type TechListeProps = {
+    active1: number;
+    deep: number;
+    setBg: any;
+    active2: number;
+    setActive2: any;
+};
 
 const sections = [
     [
@@ -149,116 +151,70 @@ const sections = [
     ],
 ];
 
-const deep1 = [
-    {
-        title: "Backend",
-        id: 1,
-    },
-    {
-        title: "Sever",
-        id: 2,
-    },
-    {
-        title: "DataBase",
-        id: 3,
-    },
-    {
-        title: "Frontend",
-        id: 4,
-    },
-    {
-        title: "Basic",
-        id: 5,
-    },
-    
-]
-
-
-const Tech: NextPage = () => {
-    const router = useRouter()
-    let [deep, setDeep] = useState(1)
-    const [bg, setBg] = useState("/kotlin_bg.png");
-    let min1 = deep1[0].id
-    let max1 = deep1[deep1.length - 1].id
-    let [active1, setActive1] = useState(1)
-    let [active2, setActive2] = useState(0)
+const TechList: NextPage<TechListeProps> = ({active1, deep, setBg, setActive2, active2}) => {
+    let min2 = sections[active1-1][0].id
+    let max2 = sections[active1-1][sections[active1-1].length - 1].id
+    const [transform, setTransform] = useState(0)
+    setBg(sections[active1-1][0]?.bg);
+    useEffect(() => {
+        const listener = (e: KeyboardEvent) => {
+            if (e.code === "KeyA" || e.code === "ArrowLeft") {
+                switch(deep) {
+                    case 2 :
+                        if (active2 > min2) {
+                            setActive2(--active2)
+                        }
+                        break
+                }
+            }  else if (e.code === "KeyD" || e.code === "ArrowRight") {
+                switch(deep) {
+                    case 2 :
+                        if (active2 < max2) {
+                            setActive2(++active2)
+                        }
+                        break
+                }
+            } else if (e.code === "Enter") {
+            } else if (e.code === "Backspace") {
+            }
+        };
+        document.addEventListener("keydown", listener);
+        return () => {
+            document.removeEventListener("keydown", listener);
+        };
+        }, []);
 
     useEffect(() => {
-    const listener = (e: KeyboardEvent) => {
-        if (e.code === "KeyA" || e.code === "ArrowLeft") {
-            switch(deep) {
-                case 1 :
-                    if (active1 > min1) {
-                        setActive1(--active1)
-                    }
-                    break
-            }
-        }  else if (e.code === "KeyD" || e.code === "ArrowRight") {
-            console.log(deep)
-            switch(deep) {
-                case 1 :
-                    if (active1 < max1) {
-                        setActive1(++active1)
-                    }
-                    break
-            }
-        } else if (e.code === "Enter") {
-            switch(deep) {
-                case 1 :
-                    setDeep(++deep)
-                    setActive2(1)
-                    break
-            }
-        } else if (e.code === "Backspace") {
-            switch(deep) {
-                case 1 :
-                    router.push("/")
-                    break
-            }
-        }
-    };
-    document.addEventListener("keydown", listener);
-    return () => {
-        document.removeEventListener("keydown", listener);
-    };
-    }, []);
+        let diff = active2 - 1;
+        diff *= -1;
+        let width = 80;
+        let padding = 3;
+        let margin = 3;
+        let user_width = width + 2 * padding + 2 * margin;
+        setTransform(diff * user_width);
+        setBg(sections[active1-1][active2 - 1]?.bg);
+    }, [active2]);
+   
     return (
-        <div className={styles.mainContainerWrap} style={{ backgroundImage: `url(${bg})` }}>
-            <div className={styles.mainContainer}>
-                <div className={styles.mainHeader}>
-                <div className={styles.gamesMedia}>
-                    {deep1.map((sec) => (
-                        <p
-                         key={`deep1_`+sec.id}
-                         className={`${styles.deep1} ${
-                            active1 === sec.id ? styles.activeDeep1 : ""
-                        }`}
-                         >{sec.title}</p>
-                    ))}
-                </div>
-                <div className={styles.iconsContainer}>
-                    <div className={styles.profileIcon}>
-                    <img src={"/profile.jpg"} />
-                    <div className={styles.onlineSymbol}></div>
+        <div
+        className={styles.sections}
+        style={deep === 2 ? {transform:`translateX(${transform}px)`} : {transform :"translateX(0px)"} }
+        >
+            {sections[active1-1].map((sec: { id: string | number; icon: string | undefined; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; }) => (
+                <div
+                key={`game_`+sec.id}
+                className={`${styles.sect} ${
+                    active2 === sec.id && deep === 2 ? styles.activeSect : ""
+                }`}
+                >
+                    <div className={styles.iconWrap}>
+                        <img src={sec.icon} />
                     </div>
-                    <Clock />
+                {active2 === sec.id && deep === 2 ? <p>{sec.name}</p> : ""}
                 </div>
-                </div>
-                <TechList 
-                active1={active1} 
-                deep={deep}
-                setBg={setBg}
-                active2={active2}
-                setActive2={setActive2}
-                />
-                <TechTitle 
-                active1={active1} 
-                active2={active2} 
-                />
-                <Controller />
-            </div>
+            ))}
         </div>
     )
 }
 
-export default Tech;
+export default TechList;
