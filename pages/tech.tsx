@@ -7,8 +7,30 @@ import Controller from './components/Controller'
 import Clock from './components/Clock'
 import { useRouter } from 'next/router'
 
+const deep1 = [
+    {
+        title: "Backend",
+        id: 1,
+    },
+    {
+        title: "Sever",
+        id: 2,
+    },
+    {
+        title: "DataBase",
+        id: 3,
+    },
+    {
+        title: "Frontend",
+        id: 4,
+    },
+    {
+        title: "Basic",
+        id: 5,
+    },
+]
 
-const sections = [
+const deep2 = [
     [
         {
             icon: "/kotlin_icon.png",
@@ -63,43 +85,43 @@ const sections = [
         {
             icon: "/docker_icon.png",
             name: "Docker",
-            bg: "/java_bg.jpg",
+            bg: "/docker_bg.png",
             game: true,
-            gameText: "/java_disc.png",
+            gameText: "/docker_disc.png",
             id: 2,
         },
         {
-            icon: "/docker-compose_icon.jpg",
+            icon: "/docker-compose_icon.png",
             name: "Docker Compose",
             game: true,
-            gameText: "spring_disc.png",
-            bg: "/spring_bg.png",
+            gameText: "docker-compose_disc.png",
+            bg: "/docker-compose_bg.jpg",
             id: 3,
         },
         {
             icon: "/linux_icon.png",
             name: "Linux",
             game: true,
-            gameText: "node_disc.png",
-            bg: "/node_bg.png",
+            gameText: "linux_disc.png",
+            bg: "/linux_bg.png",
             id: 4,
         },
         {
             icon: "/ubuntu_icon.png",
             name: "Ubuntu",
             game: true,
-            gameText: "node_disc.png",
-            bg: "/node_bg.png",
+            gameText: "ubuntu_disc.png",
+            bg: "/ubuntu_bg.png",
             id: 5,
-          },
-          {
+        },
+        {
             icon: "/centos_icon.jpg",
             name: "Centos",
             game: true,
-            gameText: "node_disc.png",
-            bg: "/node_bg.png",
+            gameText: "centos_disc.png",
+            bg: "/centos_bg.png",
             id: 6,
-          },
+        },
     ],
     [
         {
@@ -111,38 +133,62 @@ const sections = [
             id: 1,
         },
         {
-            icon: "/java_icon.png",
-            name: "Java",
-            bg: "/java_bg.png",
+            icon: "/mongo_icon.png",
+            name: "MongdoDB",
+            bg: "/mongo_bg.png",
             game: true,
-            gameText: "/java_disc.png",
+            gameText: "/mongo_disc.png",
             id: 2,
         },
         {
-            icon: "/spring_icon.jpg",
-            name: "Spring Boot",
+            icon: "/redis_icon.png",
+            name: "Redis",
             game: true,
-            gameText: "spring_disc.png",
-            bg: "/spring_bg.png",
+            gameText: "redis_disc.png",
+            bg: "/redis_bg.png",
             id: 3,
+        },
+        {
+            icon: "/es_icon.png",
+            name: "Elastic Search",
+            game: true,
+            gameText: "es_disc.png",
+            bg: "/es_bg.jpg",
+            id: 4,
         },
     ],
     [
+        {
+            icon: "/ts_icon.png",
+            name: "TypeScript",
+            bg: "/ts_bg.jpg",
+            game: true,
+            gameText: "/ts_disc.png",
+            id: 1,
+        },
         {
             icon: "/react_icon.png",
             name: "React",
             bg: "/react_bg.png",
             game: true,
             gameText: "/react_disc.png",
-            id: 1,
+            id: 2,
         },
         {
-            icon: "/java_icon.png",
-            name: "Java",
-            bg: "/java_bg.png",
+            icon: "/next_icon.png",
+            name: "Next",
+            bg: "/next_bg.jpg",
             game: true,
-            gameText: "/java_disc.png",
-            id: 2,
+            gameText: "/next_disc.png",
+            id: 3,
+        },
+        {
+            icon: "/vue_icon.png",
+            name: "Vue",
+            bg: "/vue_bg.png",
+            game: true,
+            gameText: "/vue_disc.png",
+            id: 4,
         },
     ],
     [
@@ -165,71 +211,102 @@ const sections = [
     ],
 ];
 
-const deep1 = [
-    {
-        title: "Backend",
-        id: 1,
-    },
-    {
-        title: "Sever",
-        id: 2,
-    },
-    {
-        title: "DataBase",
-        id: 3,
-    },
-    {
-        title: "Frontend",
-        id: 4,
-    },
-    {
-        title: "Basic",
-        id: 5,
-    },
-    
-]
-
 
 const Tech: NextPage = () => {
     const router = useRouter()
     let [deep, setDeep] = useState(1)
-    const [bg, setBg] = useState("/kotlin_bg.png");
     let min1 = deep1[0].id
     let max1 = deep1[deep1.length - 1].id
     let [active1, setActive1] = useState(1)
-    let [active2, setActive2] = useState(0)
+    let [active2, setActive2] = useState(1)
+    let [bg, setBg] = useState("");
+
+    let min2 = deep2[active1-1][0].id
+    let max2 = deep2[active1-1][deep2[active1-1].length - 1].id
+    const [transform, setTransform] = useState(0)
 
     useEffect(() => {
     const listener = (e: KeyboardEvent) => {
-        if (e.code === "KeyA" || e.code === "ArrowLeft") {
+        if (e.code === "KeyW" || e.code === "ArrowUp") {
+            switch(deep) {
+                case 1 :
+                    break
+                case 2 :
+                    setDeep(--deep)
+                    setActive2(active2=1)
+                    break
+                case 3:
+                    setDeep(--deep)
+                    break;
+            }
+        } else if (e.code === "KeyA" || e.code === "ArrowLeft") {
             switch(deep) {
                 case 1 :
                     if (active1 > min1) {
                         setActive1(--active1)
                     }
                     break
+                case 2 :
+                    if (active2 > min2) {
+                        setActive2(--active2)
+                    }
+                    break
+                case 3:
+                    break;
+            }
+        } else if (e.code === "KeyS" || e.code === "ArrowDown") {
+            switch(deep) {
+                case 1 :
+                    setDeep(++deep)
+                    min2 = deep2[active1-1][0].id
+                    max2 = deep2[active1-1][deep2[active1-1].length - 1].id
+                    break
+                case 2 :
+                    setDeep(++deep)
+                    break
+                case 3:
+                    break;
             }
         }  else if (e.code === "KeyD" || e.code === "ArrowRight") {
-            console.log(deep)
             switch(deep) {
                 case 1 :
                     if (active1 < max1) {
                         setActive1(++active1)
                     }
                     break
+                case 2 :
+                    if (active2 < max2) {
+                        setActive2(++active2)
+                    }
+                    break
+                case 3:
+                    break;
             }
         } else if (e.code === "Enter") {
             switch(deep) {
                 case 1 :
                     setDeep(++deep)
-                    setActive2(1)
+                    min2 = deep2[active1-1][0].id
+                    max2 = deep2[active1-1][deep2[active1-1].length - 1].id
                     break
+                case 2 :
+                    setDeep(++deep)
+                    break
+                case 3:
+                    break;
             }
         } else if (e.code === "Backspace") {
             switch(deep) {
                 case 1 :
                     router.push("/")
                     break
+                case 2 :
+                    setDeep(--deep)
+                    setActive2(active2=1)
+                    break
+                case 3:
+                    setDeep(--deep)
+                    break;
             }
         }
     };
@@ -238,6 +315,24 @@ const Tech: NextPage = () => {
         document.removeEventListener("keydown", listener);
     };
     }, []);
+
+    useEffect(() => {
+        let diff = active2 - 1;
+        diff *= -1;
+        let width = 80;
+        let padding = 3;
+        let margin = 3;
+        let user_width = width + 2 * padding + 2 * margin;
+        setTransform(diff * user_width);
+        setBg(deep2[active1-1][active2 - 1]?.bg);
+    }, [active2]);
+
+
+    useEffect(() => {
+        setBg(deep2[active1-1][active2 - 1]?.bg);
+    }, [active1]);
+
+
     return (
         <div className={styles.mainContainerWrap} style={{ backgroundImage: `url(${bg})` }}>
             <div className={styles.mainContainer}>
@@ -245,11 +340,11 @@ const Tech: NextPage = () => {
                 <div className={styles.gamesMedia}>
                     {deep1.map((sec) => (
                         <p
-                         key={`deep1_`+sec.id}
-                         className={`${styles.deep1} ${
+                        key={`deep1_`+sec.id}
+                        className={`${styles.deep1} ${
                             active1 === sec.id ? styles.activeDeep1 : ""
                         }`}
-                         >{sec.title}</p>
+                        >{sec.title}</p>
                     ))}
                 </div>
                 <div className={styles.iconsContainer}>
@@ -263,13 +358,13 @@ const Tech: NextPage = () => {
                 <TechList 
                 active1={active1} 
                 deep={deep}
-                setBg={setBg}
                 active2={active2}
-                setActive2={setActive2}
+                transform={transform}
                 />
                 <TechTitle 
                 active1={active1} 
-                active2={active2} 
+                active2={active2}
+                deep={deep}
                 />
                 <Controller />
             </div>

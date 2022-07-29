@@ -20,6 +20,7 @@
 
   .descriptContainer img {
     max-width: 380px;
+    max-height: 180px;
   }
   
   .buttonContainer {
@@ -37,6 +38,12 @@
   
   .descriptContainer .buttonContainer .playButton {
     padding: 15px 75px 15px 75px;
+    transition: all 0.5;
+  }
+
+  .descriptContainer .buttonContainer .playButton.activePlayButton {
+    background-color: #FFF;
+    color: #000;
   }
   
   .descriptContainer .buttonContainer .ellipsesButton {

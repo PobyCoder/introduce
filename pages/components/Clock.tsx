@@ -3,16 +3,12 @@ import type { NextPage } from 'next'
 
 const Clock: NextPage = () => {
     const date = new Date();
-    let hour = leadingZeros(date.getHours())
-    let minute = leadingZeros(date.getMinutes())
-    let times = leadingZeros(date.getSeconds())
-    let filterTime = hour+":"+minute+":"+times
-    const [time, setTime] = useState(filterTime);
+    const [time, setTime] = useState("");
     const getTime = () => {
         const date = new Date();
-        let hour = leadingZeros(date.getHours())
-        let minute = leadingZeros(date.getMinutes())
-        let times = leadingZeros(date.getSeconds())
+        let hour = fillZero(date.getHours())
+        let minute = fillZero(date.getMinutes())
+        let times = fillZero(date.getSeconds())
         let filterTime = hour+":"+minute+":"+times
       setTime(filterTime)
     }
@@ -29,7 +25,7 @@ const Clock: NextPage = () => {
     )
 }
 
-function leadingZeros(n:Number) {
+function fillZero(n:Number) {
     let zero = '';
     let newTime = n.toString();
   
