@@ -6,7 +6,7 @@ class MyDocument extends Document {
         return (
         <Html>
             <Head>
-                <title>PobyCoder</title>
+                <title>PobyCoder(PS5 UI)</title>
                 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet" />
                 <link rel="preconnect" href="https://fonts.googleapis.com"/>
                 <link rel="preconnect" href="https://fonts.gstatic.com"/>

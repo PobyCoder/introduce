@@ -165,20 +165,52 @@ const deep2 = [
     ],
     [
         {
-            icon: "/kotlin_icon.png",
-            name: "Kotlin",
-            bg: "/kotlin_bg.png",
+            icon: "/clojure_icon.png",
+            name: "Clojure",
+            bg: "/clojure_bg.webp",
             game: true,
-            gameText: "/kotlin_disc.png",
+            gameText: "/clojure_disc.png",
             id: 1,
         },
         {
-            icon: "/java_icon.png",
-            name: "Java",
-            bg: "/java_bg.png",
+            icon: "/deno_icon.png",
+            name: "Deno",
+            bg: "/deno_bg.jpg",
             game: true,
-            gameText: "/java_disc.png",
+            gameText: "/deno_disc.png",
             id: 2,
+        },
+        {
+            icon: "/rust_icon.png",
+            name: "Rust",
+            bg: "/rust_bg.png",
+            game: true,
+            gameText: "/rust_disc.png",
+            id: 3,
+        },
+        {
+            icon: "/ruby_icon.png",
+            name: "Ruby on Rails",
+            bg: "/ruby_bg.jpg",
+            game: true,
+            gameText: "/ruby_disc.png",
+            id: 4,
+        },
+        {
+            icon: "/go_icon.png",
+            name: "Go",
+            bg: "/go_bg.jpg",
+            game: true,
+            gameText: "/go_disc.png",
+            id: 5,
+        },
+        {
+            icon: "/fastapi_icon.png",
+            name: "Fast Api",
+            bg: "/fastapi_bg.png",
+            game: true,
+            gameText: "/fastapi_disc.png",
+            id: 6,
         },
     ],
 ];
@@ -198,7 +230,7 @@ const GameList: NextPage<GameList> = ({ active1 , active2 , deep}) => {
         <a 
         className=
         {`${styles.playButton} ${
-            deep === 3 ? styles.activePlayButton : ""
+            (deep === 3 || deep === 4) ? styles.activePlayButton : ""
         }`}>자세히보기</a>
         </div>
     </div>

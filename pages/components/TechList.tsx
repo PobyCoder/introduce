@@ -172,20 +172,52 @@ const deep2 = [
     ],
     [
         {
-            icon: "/kotlin_icon.png",
-            name: "Kotlin",
-            bg: "/kotlin_bg.png",
+            icon: "/clojure_icon.png",
+            name: "Clojure",
+            bg: "/clojure_bg.webp",
             game: true,
-            gameText: "/kotlin_disc.png",
+            gameText: "/clojure_disc.png",
             id: 1,
         },
         {
-            icon: "/java_icon.png",
-            name: "Java",
-            bg: "/java_bg.png",
+            icon: "/deno_icon.png",
+            name: "Deno",
+            bg: "/deno_bg.jpg",
             game: true,
-            gameText: "/java_disc.png",
+            gameText: "/deno_disc.png",
             id: 2,
+        },
+        {
+            icon: "/rust_icon.png",
+            name: "Rust",
+            bg: "/rust_bg.png",
+            game: true,
+            gameText: "/rust_disc.png",
+            id: 3,
+        },
+        {
+            icon: "/ruby_icon.png",
+            name: "Ruby on Rails",
+            bg: "/ruby_bg.jpg",
+            game: true,
+            gameText: "/ruby_disc.png",
+            id: 4,
+        },
+        {
+            icon: "/go_icon.png",
+            name: "Go",
+            bg: "/go_bg.jpg",
+            game: true,
+            gameText: "/go_disc.png",
+            id: 5,
+        },
+        {
+            icon: "/fastapi_icon.png",
+            name: "Fast Api",
+            bg: "/fastapi_bg.png",
+            game: true,
+            gameText: "/fastapi_disc.png",
+            id: 6,
         },
     ],
 ];
@@ -194,19 +226,19 @@ const TechList: NextPage<TechListeProps> = ({active1, deep, transform, active2})
     return (
         <div
         className={styles.sections}
-        style={(deep === 2 || deep === 3 ) ? {transform:`translateX(${transform}px)`} : {transform :"translateX(0px)"} }
+        style={(deep === 2 || deep === 3 || deep === 4) ? {transform:`translateX(${transform}px)`} : {transform :"translateX(0px)"} }
         >
             {deep2[active1-1].map((sec: { id: string | number; icon: string | undefined; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; }) => (
                 <div
                 key={`game_`+sec.id}
                 className={`${styles.sect} ${
-                    active2 === sec.id && (deep === 2 || deep === 3 ) ? styles.activeSect : ""
+                    active2 === sec.id && (deep === 2 || deep === 3 || deep === 4) ? styles.activeSect : ""
                 }`}
                 >
                     <div className={styles.iconWrap}>
                         <img src={sec.icon} />
                     </div>
-                {active2 === sec.id && (deep === 2 || deep === 3 ) ? <p>{sec.name}</p> : ""}
+                {active2 === sec.id && (deep === 2 || deep === 3 || deep === 4) ? <p>{sec.name}</p> : ""}
                 </div>
             ))}
         </div>
