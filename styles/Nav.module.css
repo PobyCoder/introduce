@@ -1,0 +1,21 @@
+.nav {
+    width: 800px;
+    height: 100%;
+    color: #FFF;
+    padding: 50px 80px;
+}
+
+.titleWrap{
+    display: flex;
+}
+
+.title{
+    padding: 3px 15px;
+    font-size: 16px;
+    border: 2px solid rgba(0, 0, 0, 0);
+    border-radius: 50px;
+}
+
+.title.active{
+    border-color: skyblue;
+}

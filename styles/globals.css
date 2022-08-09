@@ -38,3 +38,15 @@ a {
     background: black;
   }
 }
+
+.MuiDrawer-paper * {
+  font-family: 'NanumSquareRound';
+}
+
+.MuiDrawer-paper{
+  background-color: rgba(0, 0, 0, 0.9) !important;
+}
+
+.MuiBackdrop-root {
+  background-color: rgba(0, 0, 0, 0) !important;
+}

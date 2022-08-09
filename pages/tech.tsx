@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, SetStateAction } from "react";
 import type { NextPage } from 'next'
 import styles from "/styles/Tech.module.css";
 import TechTitle from './components/TechTitle'
 import TechList from './components/TechList'
+import Nav from './components/Nav'
 import Controller from './components/Controller'
+import Deep2 from './interface/Deep2'
+import DetailTitle from './interface/DetailTitle'
 import Clock from './components/Clock'
 import { useRouter } from 'next/router'
 import { Drawer } from "@material-ui/core";
@@ -31,7 +34,18 @@ const deep1 = [
     },
 ]
 
-const deep2 = [
+const detail: DetailTitle = [
+    {
+        title:"프로젝트",
+        id: 1,
+    },
+    {
+        title:"상세기술",
+        id: 2,
+    }
+]
+
+const deep2: Deep2 = [
     [
         {
             icon: "/kotlin_icon.png",
@@ -40,6 +54,7 @@ const deep2 = [
             game: true,
             gameText: "/kotlin_disc.png",
             id: 1,
+            detail,
         },
         {
             icon: "/java_icon.png",
@@ -48,6 +63,7 @@ const deep2 = [
             game: true,
             gameText: "/java_disc.png",
             id: 2,
+            detail,
         },
         {
             icon: "/spring_icon.jpg",
@@ -56,6 +72,7 @@ const deep2 = [
             gameText: "spring_disc.png",
             bg: "/spring_bg.png",
             id: 3,
+            detail,
         },
         {
             icon: "/node_icon.png",
@@ -64,6 +81,7 @@ const deep2 = [
             gameText: "node_disc.png",
             bg: "/node_bg.png",
             id: 4,
+            detail,
         },
         {
             icon: "/php_icon.jpg",
@@ -72,6 +90,7 @@ const deep2 = [
             gameText: "php_disc.png",
             bg: "/php_bg.png",
             id: 5,
+            detail,
         },
     ],
     [
@@ -82,6 +101,7 @@ const deep2 = [
             game: true,
             gameText: "/aws_disc.png",
             id: 1,
+            detail,
         },
         {
             icon: "/docker_icon.png",
@@ -90,6 +110,7 @@ const deep2 = [
             game: true,
             gameText: "/docker_disc.png",
             id: 2,
+            detail,
         },
         {
             icon: "/docker-compose_icon.png",
@@ -98,6 +119,7 @@ const deep2 = [
             gameText: "docker-compose_disc.png",
             bg: "/docker-compose_bg.jpg",
             id: 3,
+            detail,
         },
         {
             icon: "/linux_icon.png",
@@ -106,6 +128,7 @@ const deep2 = [
             gameText: "linux_disc.png",
             bg: "/linux_bg.png",
             id: 4,
+            detail,
         },
         {
             icon: "/ubuntu_icon.png",
@@ -114,6 +137,7 @@ const deep2 = [
             gameText: "ubuntu_disc.png",
             bg: "/ubuntu_bg.png",
             id: 5,
+            detail,
         },
         {
             icon: "/centos_icon.jpg",
@@ -122,6 +146,7 @@ const deep2 = [
             gameText: "centos_disc.png",
             bg: "/centos_bg.png",
             id: 6,
+            detail,
         },
     ],
     [
@@ -132,6 +157,7 @@ const deep2 = [
             game: true,
             gameText: "/mysql_disc.png",
             id: 1,
+            detail,
         },
         {
             icon: "/mongo_icon.png",
@@ -140,6 +166,7 @@ const deep2 = [
             game: true,
             gameText: "/mongo_disc.png",
             id: 2,
+            detail,
         },
         {
             icon: "/redis_icon.png",
@@ -148,6 +175,7 @@ const deep2 = [
             gameText: "redis_disc.png",
             bg: "/redis_bg.png",
             id: 3,
+            detail,
         },
         {
             icon: "/es_icon.png",
@@ -156,6 +184,7 @@ const deep2 = [
             gameText: "es_disc.png",
             bg: "/es_bg.jpg",
             id: 4,
+            detail,
         },
     ],
     [
@@ -166,6 +195,7 @@ const deep2 = [
             game: true,
             gameText: "/ts_disc.png",
             id: 1,
+            detail,
         },
         {
             icon: "/react_icon.png",
@@ -174,6 +204,7 @@ const deep2 = [
             game: true,
             gameText: "/react_disc.png",
             id: 2,
+            detail,
         },
         {
             icon: "/next_icon.png",
@@ -182,6 +213,7 @@ const deep2 = [
             game: true,
             gameText: "/next_disc.png",
             id: 3,
+            detail,
         },
         {
             icon: "/vue_icon.png",
@@ -190,6 +222,7 @@ const deep2 = [
             game: true,
             gameText: "/vue_disc.png",
             id: 4,
+            detail,
         },
     ],
     [
@@ -200,6 +233,7 @@ const deep2 = [
             game: true,
             gameText: "/clojure_disc.png",
             id: 1,
+            detail,
         },
         {
             icon: "/deno_icon.png",
@@ -208,6 +242,7 @@ const deep2 = [
             game: true,
             gameText: "/deno_disc.png",
             id: 2,
+            detail,
         },
         {
             icon: "/rust_icon.png",
@@ -216,6 +251,7 @@ const deep2 = [
             game: true,
             gameText: "/rust_disc.png",
             id: 3,
+            detail,
         },
         {
             icon: "/ruby_icon.png",
@@ -224,6 +260,7 @@ const deep2 = [
             game: true,
             gameText: "/ruby_disc.png",
             id: 4,
+            detail,
         },
         {
             icon: "/go_icon.png",
@@ -232,6 +269,7 @@ const deep2 = [
             game: true,
             gameText: "/go_disc.png",
             id: 5,
+            detail,
         },
         {
             icon: "/fastapi_icon.png",
@@ -240,6 +278,7 @@ const deep2 = [
             game: true,
             gameText: "/fastapi_disc.png",
             id: 6,
+            detail,
         },
     ],
 ];
@@ -252,26 +291,14 @@ const Tech: NextPage = () => {
     let max1 = deep1[deep1.length - 1].id
     let [active1, setActive1] = useState(1)
     let [active2, setActive2] = useState(1)
+    let [active3, setActive3] = useState(1)
     let [bg, setBg] = useState("");
     const [open, setOpen] = useState(false);
-    const listItems = [
-        {
-            listText: "Home"
-        },
-        {
-            listText: "Resume"
-        },
-        {
-            listText: "Portfolio"
-        },
-        {
-            listText: "Contacts"
-        }
-    ];
-
     let min2 = deep2[active1-1][0].id
     let max2 = deep2[active1-1][deep2[active1-1].length - 1].id
     const [transform, setTransform] = useState(0)
+    let min3 = detail[0].id
+    let max3 = detail[detail.length - 1].id
 
     useEffect(() => {
     const listener = (e: KeyboardEvent) => {
@@ -285,6 +312,8 @@ const Tech: NextPage = () => {
                     break
                 case 3:
                     setDeep(--deep)
+                    break;
+                case 4:
                     break;
             }
         } else if (e.code === "KeyA" || e.code === "ArrowLeft") {
@@ -301,6 +330,11 @@ const Tech: NextPage = () => {
                     break
                 case 3:
                     break;
+                case 4:
+                    if (active3 > min3) {
+                        setActive3(--active3)
+                    }
+                    break;
             }
         } else if (e.code === "KeyS" || e.code === "ArrowDown") {
             switch(deep) {
@@ -313,6 +347,8 @@ const Tech: NextPage = () => {
                     setDeep(++deep)
                     break
                 case 3:
+                    break;
+                case 4:
                     break;
             }
         }  else if (e.code === "KeyD" || e.code === "ArrowRight") {
@@ -329,6 +365,11 @@ const Tech: NextPage = () => {
                     break
                 case 3:
                     break;
+                case 4:
+                    if (active3 < max3) {
+                        setActive3(++active3)
+                    }
+                    break;
             }
         } else if (e.code === "Enter") {
             switch(deep) {
@@ -343,6 +384,8 @@ const Tech: NextPage = () => {
                 case 3:
                     setOpen(true)
                     setDeep(++deep)
+                    break;
+                case 4:
                     break;
             }
         } else if (e.code === "Backspace") {
@@ -360,6 +403,7 @@ const Tech: NextPage = () => {
                 case 4:
                     setOpen(false)
                     setDeep(--deep)
+                    setActive3(active3=1)
                     break;
             }
         }
@@ -386,7 +430,6 @@ const Tech: NextPage = () => {
         setBg(deep2[active1-1][active2 - 1]?.bg);
     }, [active1]);
 
-
     return (
         <div className={styles.mainContainerWrap} style={{ backgroundImage: `url(${bg})` }}>
             <div className={styles.mainContainer}>
@@ -410,21 +453,26 @@ const Tech: NextPage = () => {
                 </div>
                 </div>
                 <TechList 
+                deep2={deep2} 
                 active1={active1} 
                 deep={deep}
                 active2={active2}
                 transform={transform}
                 />
                 <TechTitle 
+                deep2={deep2} 
                 active1={active1} 
                 active2={active2}
                 deep={deep}
                 />
                 <Controller />
-                <Drawer open={open} anchor="right" >
-                    123123123
-                    12312312312
-                    3123123
+                <Drawer open={open} anchor="right" color="red">
+                    <Nav 
+                    deep2={deep2} 
+                    active1={active1}
+                    active2={active2}
+                    active3={active3}
+                    />
                 </Drawer>
             </div>
         </div>
