@@ -95,12 +95,21 @@ const deep2: Deep2 = [
     ],
     [
         {
+            icon: "/k8s_icon.png",
+            name: "Kubernetes",
+            bg: "/k8s_bg.jpg",
+            game: true,
+            gameText: "/k8s_disc.png",
+            id: 1,
+            detail,
+        },
+        {
             icon: "/aws_icon.jpg",
             name: "AWS",
             bg: "/aws_bg.jpg",
             game: true,
             gameText: "/aws_disc.png",
-            id: 1,
+            id: 2,
             detail,
         },
         {
@@ -109,7 +118,7 @@ const deep2: Deep2 = [
             bg: "/docker_bg.png",
             game: true,
             gameText: "/docker_disc.png",
-            id: 2,
+            id: 3,
             detail,
         },
         {
@@ -118,7 +127,7 @@ const deep2: Deep2 = [
             game: true,
             gameText: "docker-compose_disc.png",
             bg: "/docker-compose_bg.jpg",
-            id: 3,
+            id: 4,
             detail,
         },
         {
@@ -127,7 +136,7 @@ const deep2: Deep2 = [
             game: true,
             gameText: "linux_disc.png",
             bg: "/linux_bg.png",
-            id: 4,
+            id: 5,
             detail,
         },
         {
@@ -136,7 +145,7 @@ const deep2: Deep2 = [
             game: true,
             gameText: "ubuntu_disc.png",
             bg: "/ubuntu_bg.png",
-            id: 5,
+            id: 6,
             detail,
         },
         {
@@ -145,7 +154,7 @@ const deep2: Deep2 = [
             game: true,
             gameText: "centos_disc.png",
             bg: "/centos_bg.png",
-            id: 6,
+            id: 7,
             detail,
         },
     ],
